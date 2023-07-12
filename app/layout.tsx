@@ -1,4 +1,5 @@
 import './globals.css';
+import { Analytics } from '@vercel/analytics/react';
 import { twMerge } from 'tailwind-merge';
 import { Inter } from 'next/font/google';
 import Navigation from '@/components/Navigation/Navigation';
@@ -43,6 +44,7 @@ export default function RootLayout({
             {children}
           </div>
         </div>
+        <Analytics />
       </body>
     </html>
   );
