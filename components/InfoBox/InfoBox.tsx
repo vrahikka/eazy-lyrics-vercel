@@ -1,5 +1,6 @@
 import ExternalLink from '@/public/images/ExternalLink';
 import YoutubeLogo from '@/public/images/YoutubeLogo';
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface Props {
@@ -20,9 +21,11 @@ function InfoBox({
 }: Props) {
   return (
     <div className="flex md:flex-col h-fit items-start gap-2 md:w-60 [grid-area:info] border border-white rounded p-4">
-      <img
+      <Image
         src={imageUrl}
         alt={`${title} album cover`}
+        width={96}
+        height={96}
         className="rounded-md w-[6rem] h-[6rem] md:w-full md:h-auto"
       />
       <div className="flex flex-col gap-1">

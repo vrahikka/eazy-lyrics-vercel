@@ -4,8 +4,6 @@ import PageTemplate from '@/components/PageTemplate/PageTemplate';
 import SearchResults from '@/components/SearchResults/SearchResults';
 import { isError } from '@/src/guards';
 
-export const runtime = 'edge';
-
 export default async function Page({
   searchParams,
 }: {

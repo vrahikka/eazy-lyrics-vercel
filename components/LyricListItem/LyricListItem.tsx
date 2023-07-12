@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import FavoriteButton from '../Favorites/FavoriteButton/FavoriteButton';
 
 export interface FavoriteLyricDB {
@@ -36,7 +37,7 @@ function LyricListItem({
       }}
       href={`/song/${id}`}
     >
-      <img
+      <Image
         alt="Lyric thumbnail"
         src={thumbnailUrl}
         width={50}

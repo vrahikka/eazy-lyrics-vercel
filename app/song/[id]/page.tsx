@@ -6,8 +6,6 @@ import PageTemplate from '@/components/PageTemplate/PageTemplate';
 import { isError } from '@/src/guards';
 import { getReleaseDateString } from '@/src/utils';
 
-export const runtime = 'edge';
-
 export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;
 
