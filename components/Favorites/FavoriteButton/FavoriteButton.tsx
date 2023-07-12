@@ -55,6 +55,7 @@ function FavoriteButton({
             width={24}
             height={24}
             fill={isFavorite ? '#FF397F' : 'transparent'}
+            stroke="#FF397F"
             className="hover:fill-button-hoverBackgroundPrimary"
           />
         </button>
