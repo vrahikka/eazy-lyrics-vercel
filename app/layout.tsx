@@ -3,7 +3,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { twMerge } from 'tailwind-merge';
 import { Inter } from 'next/font/google';
 import Navigation from '@/components/Navigation/Navigation';
-import Image from 'next/image';
+import Background from '@/components/Background/Background';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,15 +32,7 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <Navigation />
-        <Image
-          className="w-full h-full object-cover fixed top-0 left-0 z-[-1]"
-          src="/images/background.jpg"
-          fill
-          alt="Background"
-          priority
-          quality={100}
-          sizes="100vw"
-        />
+        <Background />
         <div className="flex flex-col items-center w-full max-w-[90rem] flex-grow flex-shrink md:m-8 m-4">
           {children}
         </div>
