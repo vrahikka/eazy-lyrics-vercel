@@ -1,6 +1,5 @@
-'use client';
-
 import DOMPurify from 'dompurify';
+import { JSDOM } from 'jsdom';
 
 // const SPECIAL_ELEMENTS = ['intro', 'chorus', 'verse', 'bridge', 'pre-chorus'];
 
@@ -8,10 +7,11 @@ interface Props {
   htmlText: string;
 }
 function Lyric({ htmlText }: Props) {
-  console.log(htmlText);
-  const sanitizedLyrics = DOMPurify.sanitize(htmlText).replace(
-    /\[(.*?)](?:<br>|<p>)/g,
-    (match, p1) => {
+  const { window } = new JSDOM('');
+  const purify = DOMPurify(window);
+  const sanitizedLyrics = purify
+    .sanitize(htmlText)
+    .replace(/\[(.*?)](?:<br>|<p>)/g, (match, p1) => {
       let className = '';
       if ((p1.toLowerCase() as string).includes('pre-chorus')) {
         className = 'other special';
@@ -22,10 +22,12 @@ function Lyric({ htmlText }: Props) {
       }
 
       return `<p class="${className}">${match}</p>`;
-    }
-  );
+    });
 
-  const doc = new DOMParser().parseFromString(sanitizedLyrics, 'text/html');
+  const doc = new window.DOMParser().parseFromString(
+    sanitizedLyrics,
+    'text/html'
+  );
 
   doc.querySelectorAll('a').forEach((anchor) => {
     const p = doc.createElement('p');
