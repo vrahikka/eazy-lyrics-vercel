@@ -33,7 +33,7 @@ function LyricListItem({
       className="grid w-full gap-4 p-2 rounded border border-gray bg-dark justify-between items-center min-w-0 hover:border-secondary"
       style={{
         gridTemplateAreas: '"thumbnail title favorite"',
-        gridTemplateColumns: '50px 1fr 50px',
+        gridTemplateColumns: '3.125rem 1fr 3.125rem',
       }}
       href={`/song/${id}`}
     >
@@ -45,7 +45,8 @@ function LyricListItem({
         style={{
           gridArea: 'thumbnail',
           borderRadius: '0.25rem',
-          height: '50px',
+          width: '3.125rem',
+          height: '3.125rem',
         }}
       />
       <div

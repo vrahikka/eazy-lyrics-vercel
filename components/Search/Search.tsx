@@ -33,7 +33,7 @@ function Search() {
 
   return (
     <form
-      className="flex justify-center gap-4 w-full flex-basis-[38rem] max-w-[38rem] min-w-[20rem] [grid-area:search]"
+      className="flex justify-center gap-4 w-full flex-basis-[38rem] md:max-w-[38rem] [grid-area:search]"
       onSubmit={onSubmitSearch}
     >
       <InputField

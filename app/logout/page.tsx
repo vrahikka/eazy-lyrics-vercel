@@ -3,7 +3,7 @@ import PageTemplate from '@/components/PageTemplate/PageTemplate';
 
 export default async function Page() {
   return (
-    <PageTemplate className="mt-24 w-fit">
+    <PageTemplate className="md:mt-24 w-fit">
       <Logout />
     </PageTemplate>
   );

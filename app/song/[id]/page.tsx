@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         className="flex flex-col md:grid justify-center"
         style={{
           gridTemplateAreas: '"lyric info"',
-          gridTemplateColumns: '1fr 240px',
+          gridTemplateColumns: '1fr 15rem',
         }}
       >
         <div

@@ -10,7 +10,7 @@ function Navigation() {
       style={{
         gridTemplateAreas: '"logo extra" "search search"',
       }}
-      className="w-full md:flex md:justify-between md:gap-8 gap-2 p-2 md:p-8 [display:grid] grid-rows-[1fr_1fr] justify-items-start grid-cols-[2fr_1fr]  items-center  bg-dark text-white sticky top-0 z-10"
+      className="w-full md:flex md:justify-between md:gap-8 p-2 md:h-[5rem] [display:grid] grid-rows-[4rem_4rem] justify-items-start grid-cols-[2fr_1fr]  items-center  bg-dark text-white sticky top-0 z-10"
     >
       <Link
         href="/"
@@ -18,7 +18,7 @@ function Navigation() {
         aria-label="Main page"
       >
         <div className="flex items-center gap-4 uppercase">
-          <Logo width={200} height={50} />
+          <Logo className="w-full max-w-[12rem] h-fit" />
         </div>
       </Link>
       <Search />
