@@ -1,10 +1,10 @@
-'use client';
-
+import { queryFavoriteSongsServer } from '@/_api/supabase_server';
 import FavoriteLyric from '@/components/Favorites/FavoriteLyric/FavoriteLyric';
-import { useGetFavoriteSongs } from '@/src/hooks';
+import { FavoriteRow } from '@/src/lib/database.types';
 
-function Favorites() {
-  const favorites = useGetFavoriteSongs();
+async function Favorites() {
+  const query = await queryFavoriteSongsServer();
+  const favorites = query.data as FavoriteRow[];
 
   let errorText = '';
   if (favorites === null) {
