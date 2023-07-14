@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unknown-property */ // TODO FIX LINTING ISSUES
+/* eslint-disable react/no-unknown-property */
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Mesh, ShaderMaterial } from 'three';

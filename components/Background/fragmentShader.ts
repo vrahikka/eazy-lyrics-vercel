@@ -14,12 +14,12 @@ mat2 rotate2d(float _angle) {
   return mat2(cos(_angle), -sin(_angle), sin(_angle), cos(_angle));
 }
 
-float u_rPhaseMult = 3.43;
-float u_gPhaseMult = 0.39;
-float u_bPhaseMult = 0.0;
-float u_rPhase = 4.41;
-float u_gPhase = 3.32;
-float u_bPhase = 1.35;
+float u_rPhaseMult = 2.211;
+float u_gPhaseMult = 0.0;
+float u_bPhaseMult = 1.453;
+float u_rPhase = 0.6;
+float u_gPhase = 4.55;
+float u_bPhase = 0.87;
 
 void main() {
   vec4 displacement = texture2D(u_displacement, vUv);
