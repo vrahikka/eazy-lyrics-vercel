@@ -33,7 +33,7 @@ function LyricListItem({
       className="grid w-full gap-4 p-2 rounded border border-gray bg-dark justify-between items-center min-w-0 hover:border-secondary"
       style={{
         gridTemplateAreas: '"thumbnail title favorite"',
-        gridTemplateColumns: '3.125rem 1fr 3.125rem',
+        gridTemplateColumns: '3.125rem 1fr 24px',
       }}
       href={`/song/${id}`}
     >
@@ -59,18 +59,11 @@ function LyricListItem({
         <h5 className="text-lg font-medium whitespace-normal md:whitespace-nowrap overflow-hidden min-w-0 text-ellipsis">
           {title}
         </h5>
-        <p
-          style={{
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            minWidth: '0',
-          }}
-        >
+        <p className="text-lightGray whitespace-nowrap overflow-hidden min-w-0 text-ellipsis">
           {artistName}
         </p>
       </div>
-      <div className="flex gap-12" style={{ gridArea: 'favorite' }}>
+      <div className="flex" style={{ gridArea: 'favorite' }}>
         <FavoriteButton
           id={id}
           title={title}

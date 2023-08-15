@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <Navigation />
         <Background />
-        <div className="flex flex-col items-center w-full h-full fixed pt-20 px-8 overflow-auto">
+        <div className="flex flex-col items-center w-full h-full fixed md:pt-20 pt-40 px-8 overflow-y-auto overflow-x-hidden">
           <div className="flex flex-col items-center w-full max-w-[90rem] flex-grow flex-shrink md:m-8 m-4">
             {children}
           </div>

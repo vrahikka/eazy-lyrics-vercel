@@ -41,7 +41,7 @@ function Lyric({ htmlText }: Props) {
 
   return (
     <div
-      className="flex-col pb-[40rem] items-center text-center [&_.special]:underline [&_.special]:text-lightGray [&_.special]:mb-4 [&_.special]:decoration-2 [&_.chorus]:decoration-primary [&_.other]:decoration-secondary"
+      className="flex-col pb-[20rem] items-center text-center [&_.special]:underline [&_.special]:text-lightGray [&_.special]:mb-4 [&_.special]:decoration-2 [&_.chorus]:decoration-primary [&_.other]:decoration-secondary"
       dangerouslySetInnerHTML={{
         __html: doc.body.innerHTML,
       }}
