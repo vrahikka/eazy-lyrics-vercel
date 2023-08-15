@@ -9,18 +9,16 @@ function FavoriteLinkButton() {
 
   return (
     <>
-      {isLogged ? (
-        <Link href="/favorites" aria-label="Favorite songs">
-          <HeartIcon
-            width={30}
-            height={30}
-            fill={'#FF397F'}
-            className="hover:fill-button-hoverBackgroundPrimary"
-          />
-        </Link>
-      ) : (
-        <HeartIcon width={30} height={30} fill={'gray'} />
-      )}
+      <Link href="/favorites" aria-label="Favorite songs">
+        <HeartIcon
+          width={30}
+          height={30}
+          fill={isLogged ? 'primary' : 'gray'}
+          className={`hover:fill-button-hoverBackgroundPrimary ${
+            isLogged ? 'fill-primary' : 'fill-gray'
+          }`}
+        />
+      </Link>
     </>
   );
 }

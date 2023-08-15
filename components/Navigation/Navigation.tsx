@@ -20,7 +20,7 @@ function Navigation() {
       <Link
         href="/"
         className="text-4xl flex flex-shrink-0 [grid-area:logo]"
-        aria-label="Main page"
+        aria-label="Home"
       >
         <div className="flex items-center gap-4 uppercase">
           <Logo className="w-full max-w-[12rem] h-fit" />

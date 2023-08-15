@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { Inter } from 'next/font/google';
 import Navigation from '@/components/Navigation/Navigation';
 import Background from '@/components/Background/Background';
+import Footer from '@/components/Footer/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,10 +34,11 @@ export default function RootLayout({
       >
         <Navigation />
         <Background />
-        <div className="flex flex-col items-center w-full h-full fixed md:pt-20 pt-40 px-8 overflow-y-auto overflow-x-hidden">
-          <div className="flex flex-col items-center w-full max-w-[90rem] flex-grow flex-shrink md:m-8 m-4">
+        <div className="flex flex-col items-center w-full h-full fixed md:pt-20 pt-40 overflow-y-auto overflow-x-hidden">
+          <div className="flex flex-col items-center w-full max-w-[90rem] flex-grow flex-shrink md:m-8 m-4 px-8">
             {children}
           </div>
+          <Footer />
         </div>
         <Analytics />
       </body>
