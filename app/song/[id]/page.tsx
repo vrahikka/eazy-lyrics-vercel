@@ -12,8 +12,6 @@ export default async function Page({ params }: { params: { id: string } }) {
   const lyricData = await songLyric(+id ?? '');
   const details = await songDetails(+id ?? '');
 
-  console.log({ details });
-
   if (isError(lyricData) || isError(details)) {
     return <p>ERROR while fetching data</p>;
   }

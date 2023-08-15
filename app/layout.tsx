@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Eazy Lyrics',
-  description: 'Easy lyrics browser',
+  description: 'Easy and simple lyrics browser',
   creator: 'Ville Rahikka',
   themeColor: 'black',
   robots: {
@@ -27,14 +27,16 @@ export default function RootLayout({
       <body
         className={twMerge(
           inter.className,
-          'h-screen w-screen flex flex-col items-center'
+          'h-screen w-screen flex flex-col items-center overflow-hidden'
         )}
         suppressHydrationWarning={true}
       >
         <Navigation />
         <Background />
-        <div className="flex flex-col items-center w-full max-w-[90rem] flex-grow flex-shrink md:m-8 m-4">
-          {children}
+        <div className="flex flex-col items-center w-full h-full fixed pt-20 px-8 overflow-auto">
+          <div className="flex flex-col items-center w-full max-w-[90rem] flex-grow flex-shrink md:m-8 m-4">
+            {children}
+          </div>
         </div>
         <Analytics />
       </body>
