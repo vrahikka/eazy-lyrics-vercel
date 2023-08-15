@@ -34,7 +34,7 @@ function InfoBox({
         <p className="text-gray">{`Released: ${releaseDate}`}</p>
         {youtubeUrl && (
           <Link
-            className="flex gap-2 hover:underline"
+            className="flex gap-2 hover:underline pt-1"
             href={youtubeUrl}
             target="_blank"
             rel="noreferrer"
