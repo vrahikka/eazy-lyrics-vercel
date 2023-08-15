@@ -64,8 +64,12 @@ export default function Login() {
         />
         {errorMessage && <p className="text-error">{errorMessage}</p>}
         <Button onClick={handleSignIn} text="Sign in" className="w-full" />
-        <Link href="/signup" aria-label="Sing up" className="text-gray">
-          Sing up
+        <Link
+          href="#"
+          aria-label="Sing up (Disabled)"
+          className="text-gray pointer-events-none"
+        >
+          Sing up (Disabled)
         </Link>
       </form>
     </ModalTemplate>
