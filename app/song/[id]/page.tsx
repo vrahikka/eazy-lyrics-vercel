@@ -12,6 +12,8 @@ export default async function Page({ params }: { params: { id: string } }) {
   const lyricData = await songLyric(+id ?? '');
   const details = await songDetails(+id ?? '');
 
+  console.log({ details });
+
   if (isError(lyricData) || isError(details)) {
     return <p>ERROR while fetching data</p>;
   }
@@ -35,35 +37,35 @@ export default async function Page({ params }: { params: { id: string } }) {
             </h2>
             <FavoriteButton
               id={+id}
-              artist={details?.song.primary_artist.name ?? ''}
-              title={details?.song.title ?? ''}
-              thumbnailUrl={details?.song.song_art_image_thumbnail_url ?? ''}
+              artist={details?.song?.primary_artist.name ?? ''}
+              title={details?.song?.title ?? ''}
+              thumbnailUrl={details?.song?.song_art_image_thumbnail_url ?? ''}
             />
           </div>
           <div className="md:hidden">
             <InfoBox
-              album={details?.song.album.name ?? ''}
-              artist={details?.song.primary_artist.name ?? ''}
-              imageUrl={details?.song.song_art_image_url ?? ''}
+              album={details?.song?.album.name ?? ''}
+              artist={details?.song?.primary_artist.name ?? ''}
+              imageUrl={details?.song?.song_art_image_url ?? ''}
               releaseDate={getReleaseDateString(
-                details?.song.release_date_components
+                details?.song?.release_date_components
               )}
-              title={details?.song.title ?? ''}
-              youtubeUrl={details?.song.youtube_url}
+              title={details?.song?.title ?? ''}
+              youtubeUrl={details?.song?.youtube_url}
             />
           </div>
-          <Lyric htmlText={lyricData?.lyrics.lyrics.body.html ?? ''} />
+          <Lyric htmlText={lyricData?.lyrics?.lyrics.body.html ?? ''} />
         </div>
         <div className="hidden md:flex">
           <InfoBox
-            album={details?.song.album.name ?? ''}
-            artist={details?.song.primary_artist.name ?? ''}
-            imageUrl={details?.song.song_art_image_url ?? ''}
+            album={details?.song?.album.name ?? ''}
+            artist={details?.song?.primary_artist.name ?? ''}
+            imageUrl={details?.song?.song_art_image_url ?? ''}
             releaseDate={getReleaseDateString(
-              details?.song.release_date_components
+              details?.song?.release_date_components
             )}
-            title={details?.song.title ?? ''}
-            youtubeUrl={details?.song.youtube_url}
+            title={details?.song?.title ?? ''}
+            youtubeUrl={details?.song?.youtube_url}
           />
         </div>
       </div>
