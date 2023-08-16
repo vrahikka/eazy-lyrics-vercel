@@ -41,7 +41,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         >
           <div className="flex items-center">
             <h2 className="text-center">
-              {lyricData?.lyrics.tracking_data.title}
+              {lyricData?.lyrics?.tracking_data.title}
             </h2>
             <FavoriteButton
               id={+id}
