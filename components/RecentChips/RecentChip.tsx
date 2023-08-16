@@ -24,6 +24,7 @@ function RecentChip({ value, editOn }: Props) {
   return (
     <div className="[&_.close]:hover:visible relative">
       <button
+        aria-label={`${value} recent`}
         onClick={onClick}
         className="bg-dark border hover:border-secondary  border-primary rounded-full p-2 relative"
       >

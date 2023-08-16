@@ -50,7 +50,7 @@ function FavoriteButton({
   return (
     <>
       {isLogged ? (
-        <button onClick={handleAddToFavorites}>
+        <button onClick={handleAddToFavorites} aria-label="Favorite">
           <HeartIcon
             width={24}
             height={24}

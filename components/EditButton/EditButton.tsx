@@ -6,7 +6,7 @@ interface Props {
 }
 function EditButton({ onClick, stateOn }: Props) {
   return (
-    <button onClick={onClick}>
+    <button onClick={onClick} aria-label="Edit">
       <Pen
         width={24}
         height={24}

@@ -16,6 +16,7 @@ function CloseButton({ onClick, className }: Props) {
 
   return (
     <button
+      aria-label="Close"
       onClick={onClickWrapper}
       className={twMerge(
         'border border-white rounded-full bg-dark p-1 hover:border-secondary w-fit',
