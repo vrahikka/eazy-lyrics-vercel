@@ -25,7 +25,6 @@ export default function SignUp() {
         emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
     });
-    console.log(response);
     if (response.error) {
       setErrorMessage(response.error.message);
     } else {

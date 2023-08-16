@@ -62,7 +62,6 @@ export const useIsFavorite = (songId: number | null) => {
               payload.eventType === 'INSERT' &&
               payload.new.song_id === songId
             ) {
-              console.log('SET IS FAVORITE', songId);
               setIsFavorite(true);
             }
             if (
@@ -70,7 +69,6 @@ export const useIsFavorite = (songId: number | null) => {
               payload.old.song_id === songId
             ) {
               setIsFavorite(false);
-              console.log('SET NOT FAVORITE', songId);
             }
           }
         )

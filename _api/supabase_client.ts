@@ -15,7 +15,6 @@ export const insertNewFavoriteSongClient = async ({
   artist: string;
   thumbnailUrl: string;
 }) => {
-  console.log(id);
   try {
     const user = await supabase.auth.getUser();
     const { error } = await supabase.from('favorite_song_id').insert([
