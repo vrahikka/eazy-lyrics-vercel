@@ -1,8 +1,18 @@
+import { Metadata } from 'next';
 import { search } from '@/_api/api';
 import Error from '@/components/Error';
 import PageTemplate from '@/components/PageTemplate/PageTemplate';
 import SearchResults from '@/components/SearchResults/SearchResults';
 import { isError } from '@/src/guards';
+
+export const metadata: Metadata = {
+  title: 'Search',
+  robots: {
+    index: false,
+    follow: false,
+    notranslate: true,
+  },
+};
 
 export default async function Page({
   searchParams,

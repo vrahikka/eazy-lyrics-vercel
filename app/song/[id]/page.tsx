@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { songDetails, songLyric } from '@/_api/api';
 import FavoriteButton from '@/components/Favorites/FavoriteButton/FavoriteButton';
 import InfoBox from '@/components/InfoBox/InfoBox';
@@ -5,6 +6,15 @@ import Lyric from '@/components/Lyric/Lyric';
 import PageTemplate from '@/components/PageTemplate/PageTemplate';
 import { isError } from '@/src/guards';
 import { getReleaseDateString } from '@/src/utils';
+
+export const metadata: Metadata = {
+  title: 'Song',
+  robots: {
+    index: false,
+    follow: false,
+    notranslate: true,
+  },
+};
 
 export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;

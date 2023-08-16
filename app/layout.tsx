@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import { twMerge } from 'tailwind-merge';
@@ -8,13 +9,27 @@ import Footer from '@/components/Footer/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
-  title: 'Eazy Lyrics',
+export const metadata: Metadata = {
+  title: {
+    default: 'Eazy Lyrics',
+    template: '%s | Eazy Lyrics',
+  },
   description: 'Easy and simple lyrics browser',
   creator: 'Ville Rahikka',
-  themeColor: 'black',
+  keywords: ['Music', 'Lyrics'],
+  themeColor: '#A6A6A6',
   robots: {
-    index: false,
+    index: true,
+    follow: false,
+    notranslate: true,
+  },
+  openGraph: {
+    title: 'Eazy Lyrics',
+    description: 'Easy and simple lyrics browser',
+    url: 'https://eazy-lyrics-vercel.vercel.app/',
+    siteName: 'EazyLyrics',
+    locale: 'en_US',
+    type: 'website',
   },
 };
 
