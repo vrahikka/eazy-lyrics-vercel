@@ -105,6 +105,7 @@ export interface SongDetails {
     song_art_image_thumbnail_url: string;
     song_art_image_url: string;
     spotify_uuid: string;
+    soundcloud_url: string;
     description: {
       html: string;
       description_preview: string;

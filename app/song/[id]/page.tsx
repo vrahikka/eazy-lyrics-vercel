@@ -60,6 +60,8 @@ export default async function Page({ params }: { params: { id: string } }) {
               )}
               title={details?.song?.title ?? ''}
               youtubeUrl={details?.song?.youtube_url}
+              spotifyUUID={details?.song?.spotify_uuid}
+              soundCloudUrl={details?.song?.soundcloud_url}
             />
           </div>
           <Lyric htmlText={lyricData?.lyrics?.lyrics.body.html ?? ''} />
@@ -74,6 +76,8 @@ export default async function Page({ params }: { params: { id: string } }) {
             )}
             title={details?.song?.title ?? ''}
             youtubeUrl={details?.song?.youtube_url}
+            spotifyUUID={details?.song?.spotify_uuid}
+            soundCloudUrl={details?.song?.soundcloud_url}
           />
         </div>
       </div>
