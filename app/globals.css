@@ -2,61 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  font-size: 16px;
-  @apply text-white;
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-div {
-  @apply gap-4;
-  @apply md:gap-8;
-}
-
-h2 {
-  font-size: 1.875rem /* 30px */;
-  line-height: 2.25rem /* 36px */;
-}
-
-.loader {
-  border-top-color: #ff397f;
-  -webkit-animation: spinner 1s linear infinite;
-  animation: spinner 1s linear infinite;
-}
-
-@-webkit-keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
+@layer base {
+  h2 {
+    @apply text-3xl;
   }
 }

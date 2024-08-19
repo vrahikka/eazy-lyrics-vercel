@@ -3,6 +3,7 @@ import Link from 'next/link';
 import FavoriteLinkButton from '@/components/Favorites/FavoriteLinkButton/FavoriteLinkButton';
 import LoginButton from '@/components/LoginLogoutSingUp/LoginButton';
 import Search from '../Search/Search';
+import { Button } from '../ui/button';
 
 function Navigation() {
   return (
@@ -27,6 +28,7 @@ function Navigation() {
         </div>
       </Link>
       <Search />
+      <Button variant={'default'}>TEST</Button>
       <div className="flex gap-4 justify-self-end [grid-area:extra]">
         <FavoriteLinkButton />
         <LoginButton />

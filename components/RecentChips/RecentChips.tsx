@@ -19,7 +19,7 @@ function RecentChips() {
   };
 
   return (
-    <div className="flex w-full flex-col items-center gap-8 bg-red-700">
+    <div className="flex w-full flex-col items-center gap-8">
       <div className="flex items-center">
         <h2 className="text-center">Recent searches</h2>
         <div className="md:hidden flex h-fit">
