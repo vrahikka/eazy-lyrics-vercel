@@ -6,8 +6,6 @@ async function Favorites() {
   const data = await queryFavoriteSongsServer();
   const favorites = data.data as FavoriteRow[];
 
-  console.log({ favorites });
-
   let errorText = '';
   if (favorites === null) {
     errorText = 'Sorry. Unable to fetch favorites.';

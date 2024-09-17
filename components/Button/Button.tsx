@@ -1,13 +1,15 @@
 import { twMerge } from 'tailwind-merge';
 
 interface Props {
-  onClick: () => void;
+  formAction?: string | ((formData: FormData) => void) | undefined;
+  onClick?: () => void;
   text: string;
   className?: string;
 }
-function Button({ onClick, text, className }: Props) {
+function Button({ onClick, formAction, text, className }: Props) {
   return (
     <button
+      formAction={formAction}
       onClick={onClick}
       aria-label={text}
       className={twMerge(

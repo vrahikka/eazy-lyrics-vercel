@@ -20,9 +20,9 @@ export const metadata: Metadata = {
 export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;
 
-  const lyricData = await songLyric(+id ?? '');
-  const details = await songDetails(+id ?? '');
-  const favoriteSong = await queryFavoriteSongByIdServer(+id ?? 0);
+  const lyricData = await songLyric(+id);
+  const details = await songDetails(+id);
+  const favoriteSong = await queryFavoriteSongByIdServer(+id);
   const isFavorite = !!favoriteSong;
 
   if (isError(lyricData) || isError(details)) {

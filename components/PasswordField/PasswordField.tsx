@@ -1,11 +1,12 @@
 import { twMerge } from 'tailwind-merge';
 
 interface Props {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
-  value: string;
   id: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   label?: string;
+  name?: string;
   autoComplete?: string;
   className?: string;
 }
@@ -14,6 +15,7 @@ function PasswordField({
   onChange,
   value,
   label,
+  name,
   placeholder,
   id,
   autoComplete = 'off',
@@ -25,6 +27,7 @@ function PasswordField({
       <input
         id={id}
         value={value}
+        name={name}
         type="password"
         autoComplete={autoComplete}
         onChange={onChange}

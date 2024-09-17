@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   description: 'Easy and simple lyrics browser',
   creator: 'Ville Rahikka',
   keywords: ['Music', 'Lyrics'],
-  themeColor: '#A6A6A6',
   robots: {
     index: true,
     follow: false,

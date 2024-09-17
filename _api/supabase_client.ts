@@ -1,19 +1,23 @@
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import type { Database } from '@/src/lib/database.types';
-import { SONG_ID_COLUMN, TABLE_ID } from './utils';
+import { createBrowserClient as supabaseCreateBrowserClient } from '@supabase/ssr';
 import {
   AuthChangeEvent,
   RealtimeChannel,
   Session,
 } from '@supabase/supabase-js';
+import { SONG_ID_COLUMN, TABLE_ID } from './utils';
 
-const supabase = createClientComponentClient<Database>();
+export function getBrowserClient() {
+  return supabaseCreateBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
 
 export const subscribeToFavoriteSongChanges = (
   songId: number,
   callback: (isFavorite: boolean) => void
 ) => {
-  const channel = supabase
+  const channel = getBrowserClient()
     .channel(`is-favorite-${songId}`)
     .on(
       'postgres_changes',
@@ -37,12 +41,12 @@ export const subscribeToFavoriteSongChanges = (
 };
 
 export const unSubscribeToFavoriteSongChanges = (channel: RealtimeChannel) =>
-  supabase.removeChannel(channel);
+  getBrowserClient().removeChannel(channel);
 
 export const onAuthStateChange = (
   callBack: (event: AuthChangeEvent, session: Session | null) => void
 ) => {
-  supabase.auth.onAuthStateChange(callBack);
+  getBrowserClient().auth.onAuthStateChange(callBack);
 };
 
 export const insertNewFavoriteSongClient = async ({
@@ -56,6 +60,7 @@ export const insertNewFavoriteSongClient = async ({
   artist: string;
   thumbnailUrl: string;
 }) => {
+  const supabase = getBrowserClient();
   try {
     const user = await supabase.auth.getUser();
     const { error } = await supabase.from(TABLE_ID).insert([
@@ -79,6 +84,7 @@ export const insertNewFavoriteSongClient = async ({
 };
 
 export const deleteFavoriteSongClient = async (id: number) => {
+  const supabase = getBrowserClient();
   const { error } = await supabase
     .from(TABLE_ID)
     .delete()
@@ -88,3 +94,48 @@ export const deleteFavoriteSongClient = async (id: number) => {
     console.error(error.message);
   }
 };
+
+export const getUserDataClient = async () => {
+  const supabase = getBrowserClient();
+  const user = await supabase.auth.getUser();
+  return user;
+};
+
+export async function loginClient({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) {
+  const supabase = getBrowserClient();
+
+  // type-casting here for convenience
+  // in practice, you should validate your inputs
+  const data = {
+    email,
+    password,
+  };
+
+  const { error } = await supabase.auth.signInWithPassword(data);
+
+  if (error) {
+    console.log(error);
+    return { error };
+  }
+
+  return { error: null };
+}
+
+export async function logoutClient() {
+  const supabase = getBrowserClient();
+
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.log(error);
+    return { error };
+  }
+
+  return { error: null };
+}

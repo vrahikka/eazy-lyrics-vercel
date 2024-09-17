@@ -1,23 +1,30 @@
 'use client';
 
+import { getUserDataClient } from '@/_api/supabase_client';
+import LoggedInStatusUpdater from '@/components/LoggedInStatusUpdater/LoggedInStatusUpdater';
 import AvatarIcon from '@/public/images/AvatarIcon';
-import { useIsLoggedIn } from '@/src/hooks';
+import { useLoggedInStore } from '@/src/store';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 function LoginButton() {
-  const isLogged = useIsLoggedIn();
+  const isLogged = useLoggedInStore((state) => state.loggedIn);
+  console.log('IS LOGGED', isLogged);
 
   const href = isLogged ? '/logout' : '/login';
 
   return (
-    <Link href={href} aria-label="Login">
-      <AvatarIcon
-        width={30}
-        height={30}
-        fill={isLogged ? 'white' : 'gray'}
-        className="hover:fill-button-hoverBackgroundGray "
-      />
-    </Link>
+    <>
+      <LoggedInStatusUpdater />
+      <Link href={href} aria-label="Login">
+        <AvatarIcon
+          width={30}
+          height={30}
+          fill={isLogged ? 'white' : 'gray'}
+          className="hover:fill-button-hoverBackgroundGray "
+        />
+      </Link>
+    </>
   );
 }
 export default LoginButton;

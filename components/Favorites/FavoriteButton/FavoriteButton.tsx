@@ -5,9 +5,10 @@ import {
   insertNewFavoriteSongClient,
 } from '@/_api/supabase_client';
 import HeartIcon from '@/public/images/HeartIcon';
-import { useIsFavorite, useIsLoggedIn } from '@/src/hooks';
+import { useIsFavorite } from '@/src/hooks';
+import { useLoggedInStore } from '@/src/store';
 import { useRouter } from 'next/navigation';
-import { MouseEvent, useState } from 'react';
+import { MouseEvent } from 'react';
 
 interface Props {
   id: number;
@@ -27,7 +28,7 @@ function FavoriteButton({
   refresh,
 }: Props) {
   const isFavorite = useIsFavorite(id, initialFavoriteState);
-  const isLogged = useIsLoggedIn();
+  const isLogged = useLoggedInStore((state) => state.loggedIn);
   const router = useRouter();
 
   if (!id) {

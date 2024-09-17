@@ -2,11 +2,11 @@
 
 import LinkedIn from '@/public/images/Linkedin';
 import Mail from '@/public/images/Mail';
-import { useIsLoggedIn } from '@/src/hooks';
+import { useLoggedInStore } from '@/src/store';
 import Link from 'next/link';
 
 function Footer() {
-  const isLogged = useIsLoggedIn();
+  const isLogged = useLoggedInStore((state) => state.loggedIn);
 
   const href = isLogged ? '/logout' : '/login';
 
