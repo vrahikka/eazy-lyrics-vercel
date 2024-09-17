@@ -7,14 +7,14 @@ import {
 import HeartIcon from '@/public/images/HeartIcon';
 import { useIsFavorite, useIsLoggedIn } from '@/src/hooks';
 import { useRouter } from 'next/navigation';
-import { MouseEvent } from 'react';
+import { MouseEvent, useState } from 'react';
 
 interface Props {
   id: number;
   artist: string;
   title: string;
   thumbnailUrl: string;
-  initialFavoriteState?: boolean;
+  initialFavoriteState: boolean;
   refresh?: boolean;
 }
 
@@ -26,9 +26,8 @@ function FavoriteButton({
   initialFavoriteState,
   refresh,
 }: Props) {
-  const isFavorite = useIsFavorite(id) || !!initialFavoriteState;
+  const isFavorite = useIsFavorite(id, initialFavoriteState);
   const isLogged = useIsLoggedIn();
-
   const router = useRouter();
 
   if (!id) {

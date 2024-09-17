@@ -1,18 +1,15 @@
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useEffect, useState } from 'react';
 import {
-  queryFavoriteSongByIdClient,
-  queryFavoriteSongsClient,
+  onAuthStateChange,
+  subscribeToFavoriteSongChanges,
+  unSubscribeToFavoriteSongChanges,
 } from '@/_api/supabase_client';
-import { Database, FavoriteRow } from './lib/database.types';
-
-const supabase = createClientComponentClient<Database>();
 
 export const useIsLoggedIn = () => {
   const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
+    onAuthStateChange((event, session) => {
       switch (event) {
         case 'INITIAL_SESSION':
           setIsLogged(!!session);
@@ -32,76 +29,19 @@ export const useIsLoggedIn = () => {
   return isLogged;
 };
 
-export const useIsFavorite = (songId: number | null) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  async function getInitData(id: number) {
-    try {
-      const data = await queryFavoriteSongByIdClient(id ?? 0);
-      setIsFavorite((data.data && data.data?.length > 0) ?? false);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+export const useIsFavorite = (songId: number | null, initState: boolean) => {
+  const [isFavorite, setIsFavorite] = useState(initState);
 
   useEffect(() => {
     if (songId !== null) {
-      getInitData(songId);
-
-      const channel = supabase
-        .channel(`is-favorite-${songId}`)
-        .on(
-          'postgres_changes',
-          {
-            event: '*',
-            schema: 'public',
-            table: 'favorite_song_id',
-          },
-          (payload) => {
-            if (
-              payload.eventType === 'INSERT' &&
-              payload.new.song_id === songId
-            ) {
-              setIsFavorite(true);
-            }
-            if (
-              payload.eventType === 'DELETE' &&
-              payload.old.song_id === songId
-            ) {
-              setIsFavorite(false);
-            }
-          }
-        )
-        .subscribe();
+      const channel = subscribeToFavoriteSongChanges(songId, setIsFavorite);
 
       return () => {
-        supabase.removeChannel(channel);
+        unSubscribeToFavoriteSongChanges(channel);
       };
     }
     return () => {};
   }, [songId]);
 
   return isFavorite;
-};
-
-export const useGetFavoriteSongs = () => {
-  const [favorites, setFavorites] = useState<FavoriteRow[] | null>([]);
-
-  const fetchData = async () => {
-    try {
-      const query = await queryFavoriteSongsClient();
-      if (query.data) {
-        setFavorites(query.data as FavoriteRow[]);
-      }
-    } catch (error) {
-      setFavorites(null);
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  return favorites;
 };

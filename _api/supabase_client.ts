@@ -1,8 +1,49 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-
 import type { Database } from '@/src/lib/database.types';
+import { SONG_ID_COLUMN, TABLE_ID } from './utils';
+import {
+  AuthChangeEvent,
+  RealtimeChannel,
+  Session,
+} from '@supabase/supabase-js';
 
 const supabase = createClientComponentClient<Database>();
+
+export const subscribeToFavoriteSongChanges = (
+  songId: number,
+  callback: (isFavorite: boolean) => void
+) => {
+  const channel = supabase
+    .channel(`is-favorite-${songId}`)
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
+        table: TABLE_ID,
+      },
+      (payload) => {
+        if (payload.eventType === 'INSERT' && payload.new.song_id === songId) {
+          callback(true);
+        }
+        if (payload.eventType === 'DELETE' && payload.old.song_id === songId) {
+          callback(false);
+        }
+      }
+    )
+    .subscribe();
+
+  return channel;
+};
+
+export const unSubscribeToFavoriteSongChanges = (channel: RealtimeChannel) =>
+  supabase.removeChannel(channel);
+
+export const onAuthStateChange = (
+  callBack: (event: AuthChangeEvent, session: Session | null) => void
+) => {
+  supabase.auth.onAuthStateChange(callBack);
+};
 
 export const insertNewFavoriteSongClient = async ({
   id,
@@ -17,7 +58,7 @@ export const insertNewFavoriteSongClient = async ({
 }) => {
   try {
     const user = await supabase.auth.getUser();
-    const { error } = await supabase.from('favorite_song_id').insert([
+    const { error } = await supabase.from(TABLE_ID).insert([
       {
         email: user.data.user?.email,
         song_id: id,
@@ -39,17 +80,11 @@ export const insertNewFavoriteSongClient = async ({
 
 export const deleteFavoriteSongClient = async (id: number) => {
   const { error } = await supabase
-    .from('favorite_song_id')
+    .from(TABLE_ID)
     .delete()
-    .eq('song_id', id);
+    .eq(SONG_ID_COLUMN, id);
 
   if (error) {
     console.error(error.message);
   }
 };
-
-export const queryFavoriteSongByIdClient = async (id: number) =>
-  supabase.from('favorite_song_id').select().eq('song_id', id);
-
-export const queryFavoriteSongsClient = async () =>
-  supabase.from('favorite_song_id').select('*');

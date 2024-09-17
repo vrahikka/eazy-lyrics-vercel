@@ -6,6 +6,7 @@ import Lyric from '@/components/Lyric/Lyric';
 import PageTemplate from '@/components/PageTemplate/PageTemplate';
 import { isError } from '@/src/guards';
 import { getReleaseDateString } from '@/src/utils';
+import { queryFavoriteSongByIdServer } from '@/_api/supabase_server';
 
 export const metadata: Metadata = {
   title: 'Song',
@@ -21,6 +22,8 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   const lyricData = await songLyric(+id ?? '');
   const details = await songDetails(+id ?? '');
+  const favoriteSong = await queryFavoriteSongByIdServer(+id ?? 0);
+  const isFavorite = !!favoriteSong;
 
   if (isError(lyricData) || isError(details)) {
     return <p>ERROR while fetching data</p>;
@@ -48,6 +51,7 @@ export default async function Page({ params }: { params: { id: string } }) {
               artist={details?.song?.primary_artist.name ?? ''}
               title={details?.song?.title ?? ''}
               thumbnailUrl={details?.song?.song_art_image_thumbnail_url ?? ''}
+              initialFavoriteState={isFavorite}
             />
           </div>
           <div className="md:hidden">
