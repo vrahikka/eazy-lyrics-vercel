@@ -5,11 +5,9 @@ import LoggedInStatusUpdater from '@/components/LoggedInStatusUpdater/LoggedInSt
 import AvatarIcon from '@/public/images/AvatarIcon';
 import { useLoggedInStore } from '@/src/store';
 import Link from 'next/link';
-import { useEffect } from 'react';
 
 function LoginButton() {
   const isLogged = useLoggedInStore((state) => state.loggedIn);
-  console.log('IS LOGGED', isLogged);
 
   const href = isLogged ? '/logout' : '/login';
 

@@ -18,7 +18,6 @@ export default function LoggedInStatusUpdater({ redirectHome }: Props) {
   useEffect(() => {
     const update = async () => {
       const userData = await getUserDataClient();
-      console.log({ userData });
       if (userData.data.user) {
         updateLoggedInStatus(true);
       } else {
