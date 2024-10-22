@@ -30,7 +30,7 @@ function LyricListItem({
   return (
     <Link
       prefetch={false}
-      className="grid w-full gap-4 p-2 rounded border border-gray bg-dark justify-between items-center min-w-0 hover:border-secondary"
+      className="grid w-full gap-4 py-2 px-4 rounded border border-gray bg-dark justify-between items-center min-w-0 hover:border-secondary"
       style={{
         gridTemplateAreas: '"thumbnail title favorite"',
         gridTemplateColumns: '3.125rem 1fr 24px',

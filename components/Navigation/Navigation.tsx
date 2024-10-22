@@ -1,6 +1,5 @@
 import Logo from '@/public/images/Logo';
 import Link from 'next/link';
-import FavoriteLinkButton from '@/components/Favorites/FavoriteLinkButton/FavoriteLinkButton';
 import LoginButton from '@/components/LoginLogoutSingUp/LoginButton';
 import Search from '../Search/Search';
 
@@ -15,7 +14,7 @@ function Navigation() {
         backdropFilter: 'blur(30px)',
         WebkitBackdropFilter: 'blur(30px)',
       }}
-      className="w-full md:flex md:justify-between md:gap-8 p-2 md:h-[5rem] [display:grid] grid-rows-[4rem_4rem] justify-items-start grid-cols-[2fr_1fr]  items-center  bg-dark text-white sticky top-0 z-10"
+      className="w-full md:flex md:justify-between md:gap-8 py-2 px-4 md:h-[5rem] [display:grid] grid-rows-[4rem_4rem] justify-items-start grid-cols-[2fr_1fr]  items-center  bg-dark text-white sticky top-0 z-10"
     >
       <Link
         href="/"
@@ -28,7 +27,6 @@ function Navigation() {
       </Link>
       <Search />
       <div className="flex gap-4 justify-self-end [grid-area:extra]">
-        <FavoriteLinkButton />
         <LoginButton />
       </div>
     </nav>
