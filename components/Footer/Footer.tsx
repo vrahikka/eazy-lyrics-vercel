@@ -42,9 +42,6 @@ function Footer() {
         <Link href="/" className="text-gray" aria-label="Home">
           Home
         </Link>
-        <Link href="/favorites" className="text-gray" aria-label="Favorites">
-          Favorites
-        </Link>
         <Link href={href} className="text-gray" aria-label="Login">
           Login
         </Link>
