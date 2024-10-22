@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Logo from '@/public/images/Logo';
 import Link from 'next/link';
 import LoginButton from '@/components/LoginLogoutSingUp/LoginButton';
@@ -25,7 +26,9 @@ function Navigation() {
           <Logo className="w-full max-w-[12rem] h-fit" />
         </div>
       </Link>
-      <Search />
+      <Suspense>
+        <Search />
+      </Suspense>
       <div className="flex gap-4 justify-self-end [grid-area:extra]">
         <LoginButton />
       </div>

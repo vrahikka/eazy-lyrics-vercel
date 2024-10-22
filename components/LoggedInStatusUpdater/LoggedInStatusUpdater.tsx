@@ -28,7 +28,7 @@ export default function LoggedInStatusUpdater({ redirectHome }: Props) {
       }
     };
     update();
-  }, []);
+  }, [redirectHome, router, updateLoggedInStatus]);
 
   return null;
 }

@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/login', '/logout', '/signup'],
+      disallow: ['/login', '/logout'],
     },
     sitemap: 'https://eazy-lyrics-vercel.vercel.app/sitemap.xml',
   };

@@ -1,6 +1,5 @@
 'use client';
 
-import { getUserDataClient } from '@/_api/supabase_client';
 import LoggedInStatusUpdater from '@/components/LoggedInStatusUpdater/LoggedInStatusUpdater';
 import AvatarIcon from '@/public/images/AvatarIcon';
 import { useLoggedInStore } from '@/src/store';
