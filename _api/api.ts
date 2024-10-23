@@ -13,7 +13,7 @@ const headers = {
 };
 
 export const search = async (
-  searchString: string
+  searchString: string,
 ): Promise<SearchResult | ErrorMessage | null> => {
   if (!searchString) {
     return null;
@@ -41,7 +41,7 @@ export const search = async (
 };
 
 export const songLyric = async (
-  id: number
+  id: number,
 ): Promise<SongLyric | ErrorMessage | null> => {
   if (!id) {
     return null;
@@ -70,7 +70,7 @@ export const songLyric = async (
 };
 
 export const songDetails = async (
-  id: number
+  id: number,
 ): Promise<SongDetails | ErrorMessage | null> => {
   if (!id) {
     return null;

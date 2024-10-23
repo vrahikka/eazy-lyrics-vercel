@@ -42,7 +42,7 @@ export default function RootLayout({
       <body
         className={twMerge(
           inter.className,
-          'h-screen w-screen flex flex-col items-center overflow-hidden'
+          'h-screen w-screen flex flex-col items-center overflow-hidden',
         )}
         suppressHydrationWarning={true}
       >

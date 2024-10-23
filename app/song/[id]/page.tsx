@@ -7,6 +7,7 @@ import PageTemplate from '@/components/PageTemplate/PageTemplate';
 import { isError } from '@/src/guards';
 import { getReleaseDateString } from '@/src/utils';
 import { queryFavoriteSongByIdServer } from '@/_api/supabase_server';
+import { PageProps } from '@/src/types';
 
 export const metadata: Metadata = {
   title: 'Song',
@@ -17,8 +18,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function Page({ params }: PageProps<'id'>) {
+  const { id } = await params;
 
   const lyricData = await songLyric(+id);
   const details = await songDetails(+id);
@@ -60,7 +61,7 @@ export default async function Page({ params }: { params: { id: string } }) {
               artist={details?.song?.primary_artist.name ?? ''}
               imageUrl={details?.song?.song_art_image_url ?? ''}
               releaseDate={getReleaseDateString(
-                details?.song?.release_date_components
+                details?.song?.release_date_components,
               )}
               title={details?.song?.title ?? ''}
               youtubeUrl={details?.song?.youtube_url}
@@ -76,7 +77,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             artist={details?.song?.primary_artist.name ?? ''}
             imageUrl={details?.song?.song_art_image_url ?? ''}
             releaseDate={getReleaseDateString(
-              details?.song?.release_date_components
+              details?.song?.release_date_components,
             )}
             title={details?.song?.title ?? ''}
             youtubeUrl={details?.song?.youtube_url}

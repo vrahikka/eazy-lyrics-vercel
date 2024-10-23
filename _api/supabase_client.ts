@@ -9,13 +9,13 @@ import { SONG_ID_COLUMN, TABLE_ID } from './utils';
 export function getBrowserClient() {
   return supabaseCreateBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
   );
 }
 
 export const subscribeToFavoriteSongChanges = (
   songId: number,
-  callback: (isFavorite: boolean) => void
+  callback: (isFavorite: boolean) => void,
 ) => {
   const channel = getBrowserClient()
     .channel(`is-favorite-${songId}`)
@@ -33,7 +33,7 @@ export const subscribeToFavoriteSongChanges = (
         if (payload.eventType === 'DELETE' && payload.old.song_id === songId) {
           callback(false);
         }
-      }
+      },
     )
     .subscribe();
 
@@ -44,7 +44,7 @@ export const unSubscribeToFavoriteSongChanges = (channel: RealtimeChannel) =>
   getBrowserClient().removeChannel(channel);
 
 export const onAuthStateChange = (
-  callBack: (event: AuthChangeEvent, session: Session | null) => void
+  callBack: (event: AuthChangeEvent, session: Session | null) => void,
 ) => {
   getBrowserClient().auth.onAuthStateChange(callBack);
 };

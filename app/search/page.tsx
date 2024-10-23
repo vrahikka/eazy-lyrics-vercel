@@ -4,6 +4,7 @@ import Error from '@/components/Error';
 import PageTemplate from '@/components/PageTemplate/PageTemplate';
 import SearchResults from '@/components/SearchResults/SearchResults';
 import { isError } from '@/src/guards';
+import { PageProps } from '@/src/types';
 
 export const metadata: Metadata = {
   title: 'Search',
@@ -14,15 +15,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined };
-}) {
+export default async function Page({ searchParams }: PageProps<'id'>) {
   // Access query parameters
-  const { search: searchString } = searchParams;
+  const { search: searchString } = await searchParams;
 
-  const data = await search(searchString ?? '');
+  // Ensure searchString is a string
+  const query = Array.isArray(searchString) ? searchString[0] : searchString;
+
+  const data = await search(query ?? '');
 
   const error = isError(data);
 

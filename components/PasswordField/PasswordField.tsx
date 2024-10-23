@@ -33,7 +33,7 @@ function PasswordField({
         onChange={onChange}
         className={twMerge(
           'flex flex-shrink p-2 rounded text-white w-full bg-black focus:outline-none focus:ring-1 focus:ring-secondary',
-          className
+          className,
         )}
         placeholder={placeholder}
       />

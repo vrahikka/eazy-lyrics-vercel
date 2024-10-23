@@ -3,8 +3,8 @@ import { createServerClient as supabaseCreateServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers';
 import { SONG_ID_COLUMN, TABLE_ID } from './utils';
 
-export function getServerClient() {
-  const cookieStore = cookies();
+export async function getServerClient() {
+  const cookieStore = await cookies();
 
   return supabaseCreateServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -17,7 +17,7 @@ export function getServerClient() {
         setAll(cookiesToSet) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set({ name, value, ...options })
+              cookieStore.set({ name, value, ...options }),
             );
           } catch {
             // The `setAll` method was called from a Server Component.
@@ -26,17 +26,20 @@ export function getServerClient() {
           }
         },
       },
-    }
+    },
   );
 }
 
-export const queryFavoriteSongsServer = async () =>
-  getServerClient().from(TABLE_ID).select('*');
+export const queryFavoriteSongsServer = async () => {
+  const client = await getServerClient();
+  return client.from(TABLE_ID).select('*');
+};
 
 export const queryFavoriteSongByIdServer = async (
-  id: number
+  id: number,
 ): Promise<FavoriteRow | null> => {
-  const { data, error } = await getServerClient()
+  const client = await getServerClient();
+  const { data, error } = await client
     .from(TABLE_ID)
     .select()
     .eq(SONG_ID_COLUMN, id)
@@ -52,7 +55,7 @@ export const queryFavoriteSongByIdServer = async (
 };
 
 export const getUserDataServer = async () => {
-  const supabase = getServerClient();
+  const supabase = await getServerClient();
   const user = await supabase.auth.getUser();
   return user;
 };

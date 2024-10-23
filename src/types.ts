@@ -1,3 +1,11 @@
+export type PageProps<Key extends string> = {
+  params: Params<Key>;
+  searchParams: SearchParams;
+};
+
+type Params<Key extends string> = Promise<{ [K in Key]: string }>;
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+
 export interface SearchResult {
   hits: SearchHit[];
 }

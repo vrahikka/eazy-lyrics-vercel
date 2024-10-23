@@ -27,7 +27,7 @@ function Lyric({ htmlText }: Props) {
 
   const doc = new window.DOMParser().parseFromString(
     sanitizedLyrics,
-    'text/html'
+    'text/html',
   );
 
   doc.querySelectorAll('a').forEach((anchor) => {

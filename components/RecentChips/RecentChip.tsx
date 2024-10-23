@@ -34,7 +34,7 @@ function RecentChip({ value, editOn }: Props) {
         onClick={onCloseClick}
         className={twMerge(
           'close invisible absolute -top-2 -right-2',
-          closeStyle
+          closeStyle,
         )}
       />
     </div>

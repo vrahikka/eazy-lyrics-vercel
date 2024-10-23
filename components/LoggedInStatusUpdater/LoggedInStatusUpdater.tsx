@@ -12,7 +12,7 @@ type Props = {
 export default function LoggedInStatusUpdater({ redirectHome }: Props) {
   const router = useRouter();
   const updateLoggedInStatus = useLoggedInStore(
-    (state) => state.updateLoggedInStatus
+    (state) => state.updateLoggedInStatus,
   );
 
   useEffect(() => {

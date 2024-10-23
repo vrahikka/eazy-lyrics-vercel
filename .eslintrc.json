@@ -1,14 +1,19 @@
 {
+  "env": {
+    "browser": true,
+    "es2022": true,
+    "node": true,
+    "jest": true
+  },
   "extends": [
-    "next",
-    "next/core-web-vitals",
     "eslint:recommended",
-    "airbnb-base",
-    "prettier",
+    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "next",
+    "next/core-web-vitals"
   ],
   "globals": {
     "React": "readonly"
@@ -41,5 +46,10 @@
     "react-hooks/exhaustive-deps": "warn",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

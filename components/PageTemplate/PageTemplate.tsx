@@ -9,7 +9,7 @@ function PageTemplate({ children, className }: Props) {
     <div
       className={twMerge(
         'w-full p-4 md:p-8 rounded border border-gray opacity-[0.98] bg-gradient-to-r from-cyan-500 to-blue-500 h-fit',
-        className
+        className,
       )}
       style={{
         background:

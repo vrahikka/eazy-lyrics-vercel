@@ -20,7 +20,7 @@ function CloseButton({ onClick, className }: Props) {
       onClick={onClickWrapper}
       className={twMerge(
         'border border-white rounded-full bg-dark p-1 hover:border-secondary w-fit',
-        className
+        className,
       )}
     >
       <X height={16} width={16} />
